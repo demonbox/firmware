@@ -27,6 +27,40 @@ add_library(firmware_servo_driver STATIC src/pwm_servo_driver.cpp)
 
 target_include_directories(firmware_servo_driver PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
+target_link_libraries(firmware_servo_driver ${pigpio_LIBRARY} ${pigpiod_if_LIBRARY} ${pigpiod_if2_LIBRARY} ${pigpiod_if_LIBRARY} pigpiod_if2)
+
+ament_target_dependencies(
+  firmware_servo_driver
+  pigpio
+  
+)
+
+install(DIRECTORY include/
+  DESTINATION include
+)
+install(TARGETS firmware_servo_driver
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+
+
+
+
+
+add_executable(remote_test src/remote_test.cpp)
+
+ament_target_dependencies(remote_test pigpio)
+
+target_include_directories(remote_test PRIVATE ${pigpio_INCLUDE_DIR}/include)
+
+target_link_libraries(remote_test ${pigpio_LIBRARY} ${pigpiod_if_LIBRARY} ${pigpiod_if2_LIBRARY} ${pigpiod_if_LIBRARY} pigpiod_if2 firmware_servo_driver)
+
+install(TARGETS
+remote_test
+  DESTINATION lib/${PROJECT_NAME})
+
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -37,5 +71,12 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+ament_export_include_directories(
+  include
+)
+ament_export_libraries(
+  firmware_servo_driver
+)
 
 ament_package()

@@ -55,7 +55,7 @@ class PWMServoDriver
   PWMServoDriver();
   PWMServoDriver(int, int);
   
-  void setup(uint8_t i2c_bus, uint8_t i2c_address = PCA9685_I2C_ADDRESS, uint8_t prescale = 0);
+  void setup(uint8_t i2c_bus, uint8_t i2c_address, uint32_t i2c_flags, uint8_t prescale = 0);
   void reset();
   void sleep();
   void wakeup();

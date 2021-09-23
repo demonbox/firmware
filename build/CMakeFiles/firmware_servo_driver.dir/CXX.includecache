@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/yang/ws_firmware/src/firmware_servo_driver/include/firmware_servo_driver/pwm_servo_driver.hpp
+cstdint
+-
+
+/home/yang/ws_firmware/src/firmware_servo_driver/src/pwm_servo_driver.cpp
+stdexcept
+-
+algorithm
+-
+pigpiod_if2.h
+-
+firmware_servo_driver/pwm_servo_driver.hpp
+/home/yang/ws_firmware/src/firmware_servo_driver/src/firmware_servo_driver/pwm_servo_driver.hpp
+

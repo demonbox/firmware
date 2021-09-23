@@ -11,7 +11,7 @@
  *  @brief  Instantiates a new PCA9685 PWM driver chip with the I2C address on a
  * TwoWire interface
  */
-PWMServoDriver::PWMServoDriver() : gpio_(-1), i2c_(-1) 
+PWMServoDriver::PWMServoDriver() : gpio_(PI_INIT_FAILED), i2c_(PI_INIT_FAILED) 
 {
 
   
@@ -34,13 +34,12 @@ PWMServoDriver::PWMServoDriver(int gpio_, int i2c_)
  *  @param  prescale 设置外部时钟（可选）
  *          
  */
-void PWMServoDriver::setup(uint8_t i2c_bus, uint8_t i2c_address, uint8_t prescale)
+void PWMServoDriver::setup(uint8_t i2c_bus, uint8_t i2c_address, uint32_t i2c_flags, uint8_t prescale)
 {
-
 
   if ((this->i2c_ = i2c_open(this->gpio_, i2c_bus, i2c_address, 0)) < 0)
   {
-    throw std::runtime_error("");
+    throw std::runtime_error("hello world");
   }
   else
   {
